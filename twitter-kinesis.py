@@ -1,4 +1,4 @@
-## Example to use twitter api and kinesis
+## Example to use twitter api and feed data into kinesis
 
 from TwitterAPI import TwitterAPI
 from boto import kinesis

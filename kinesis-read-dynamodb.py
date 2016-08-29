@@ -1,3 +1,6 @@
+## script to read data from Kinesis, extract hashtags and store into 
+## dynamoDB
+
 import boto3
 import time
 import json

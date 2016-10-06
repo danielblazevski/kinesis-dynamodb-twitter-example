@@ -30,7 +30,7 @@ while 1==1:
 								'hashtag': htag 
 							},
 							UpdateExpression="set htCount  = htCount + :val",
-							ConditionExpression="htCount > 0",
+							ConditionExpression="attribute_exists(hashtag)",
 							ExpressionAttributeValues={
 								':val': decimal.Decimal(1) 	
 							},

@@ -27,4 +27,3 @@ for item in r:
 		kinesis.put_records(StreamName="twitter", Records=tweets)
 		count = 0
 		tweets = []
-

@@ -16,17 +16,15 @@ api = TwitterAPI(consumer_key, consumer_secret, access_token_key, access_token_s
 
 kinesis = boto3.client('kinesis')
 
-while True:
-
-	r = api.request('statuses/filter', {'locations':'-90,-90,90,90'})
-	tweets = []
-	count = 0
-	for item in r:
-		jsonItem = json.dumps(item)
-		tweets.append({'Data':jsonItem, 'PartitionKey':"filler"})
-		count += 1
-		if count == 100:
-			kinesis.put_records(StreamName="twitter", Records=tweets)
-			count = 0
-			tweets = []
+r = api.request('statuses/filter', {'locations':'-90,-90,90,90'})
+tweets = []
+count = 0
+for item in r:
+	jsonItem = json.dumps(item)
+	tweets.append({'Data':jsonItem, 'PartitionKey':"filler"})
+	count += 1
+	if count == 100:
+		kinesis.put_records(StreamName="twitter", Records=tweets)
+		count = 0
+		tweets = []
 

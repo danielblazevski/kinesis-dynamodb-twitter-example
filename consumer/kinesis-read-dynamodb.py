@@ -24,7 +24,12 @@ while 1==1:
 			if htags:
  				for ht in htags:
 					htag = ht['text']	
-					try:
+					checkItemExists = table.get_item(
+ 					       Key={
+                					'hashtag':htag
+        					}
+					)					
+					if 'Item' in checkItemExists:
 						response = table.update_item(
 							Key={
 								'hashtag': htag 
@@ -36,7 +41,7 @@ while 1==1:
 							},
 							ReturnValues="UPDATED_NEW"
 						)
-					except: 
+					else: 
                                 		response = table.update_item(
                                         		Key={
                                                 		'hashtag': htag
